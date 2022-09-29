@@ -1,0 +1,337 @@
+swagger: '2.0'
+info:
+  description: This is a simple API for YourFoodie
+  version: 1.0.0
+  title: YourFoodie API
+  # put the contact info for your development or API team
+  contact:
+    email: sergio.ld00@gmail.com
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+# host: lab04-272422.appspot.com
+# basePath: /api
+
+# tags are used for organizing operations
+tags:
+- name: recetas
+  description: Metodos adjuntados a las recetas
+- name: tutoriales
+  description: Metodos adjuntados a los tutoriales
+
+paths:
+  /recipes:
+    get:
+      tags:
+        - recetas
+      summary: Busca recetas
+      description: |
+        Muestra las recetas encontradas introduciendo un parametro
+      operationId: getRecipes
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Successful Operation
+          schema:
+            $ref: '#/definitions/Recipe'
+        400:
+          description: Bad Request
+    post:
+      tags:
+      - recetas
+      summary: Añade una receta
+      operationId: addRecipe
+      description: Añade una receta deseada
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: recipe
+        in: body
+        schema:
+          $ref: '#/definitions/Recipe'
+      responses:
+        201:
+          description: Created
+        404:
+          description: Not Found
+    put:
+      tags:
+      - recetas
+      summary: Actualiza una receta
+      description: Actualiza una receta
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: recipe
+        in: body
+        schema:
+          $ref: '#/definitions/Recipe'
+      responses:
+        200:
+          description: Successful Operation
+        404:
+          description: Not Found
+
+  /recipes/{recipeId}:
+    get:
+      tags:
+        - recetas
+      summary: Muestra una determinada receta mediante su Id
+      operationId: getRecipe
+      description: |
+        Muestra una determinada receta mediante su Id
+      produces:
+      - application/json
+      parameters:
+      - name: recipeId
+        in: path
+        description: Informacion de la receta asociada a la Id
+        required: true
+        type: string
+      responses:
+        200:
+          description: Successful Operation
+          schema:
+            $ref: '#/definitions/Recipe'
+        400:
+          description: Bad Request
+    delete:
+      tags:
+      - recetas
+      summary: Elimina una receta
+      description: Elimina una receta determinada
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: recipeId
+        in: path
+        description: Id de la receta a eliminar
+        required: true
+        type: string
+      responses:
+        200:
+          description: Successful Operation
+        204:
+          description: No Content
+        404:
+          description: Not Found
+  
+  /recipes/{recipeId}/{tutorialId}:
+    post:
+      tags:
+      - recetas
+      - tutoriales
+      summary: Añade el tutorial (tutorialId) asociado a la receta (recipeId)
+      description: Añade el tutorial (tutorialId) asociado a la receta (recipeId)
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: recipeId
+        in: path
+        description: Id de la receta asociada 
+        required: true
+        type: string
+      - name: tutorialId
+        in: path
+        description: Id del tutorial a añadir
+        required: true
+        type: string
+      responses:
+        201:
+          description: Created
+        204:
+          description: No Content
+        404:
+          description: Not Found
+    delete:
+      tags:
+      - recetas
+      summary: Elimina tutorial con id asociado a recipeId
+      description: Elimina tutorial con id asociado a recipeId
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: recipeId
+        in: path
+        description: Id de la receta asociada
+        required: true
+        type: string
+      - name: tutorialId
+        in: path
+        description: Id del tutorial a eliminar
+        required: true
+        type: string
+      responses:
+        200:
+          description: Successful Operation
+        204:
+          description: No Content
+        404:
+          description: Not Found
+  
+  /tutorials:
+    get:
+      tags:
+        - tutoriales
+      summary: Busca tutoriales
+      description: |
+        Muestra los tutoriales encontrados a partir de las recetas
+      operationId: getTutorials
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Successful Operation
+          schema:
+            $ref: '#/definitions/Tutorial'
+        400:
+          description: Bad Request
+    post:
+      tags:
+      - tutoriales
+      summary: Añade un tutorial
+      operationId: addTutorial
+      description: Añade un tutorial deseado
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: tutorial
+        in: body
+        schema:
+          $ref: '#/definitions/Tutorial'
+      responses:
+        201:
+          description: Created
+        400:
+          description: Bad Request
+    put:
+      tags:
+      - tutoriales
+      summary: Actualiza un tutorial
+      description: Actualiza un tutorial
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: tutorial
+        in: body
+        schema:
+          $ref: '#/definitions/Tutorial'
+      responses:
+        200:
+          description: Successful Operation
+        204:
+          description: No Content
+        404:
+          description: Not Found
+          
+  /tutorials/{tutorialId}:
+    get:
+      tags:
+        - tutoriales
+      summary: Muestra un determinado tutorial mediante su Id
+      operationId: getTutorial
+      description: |
+        Muestra un determinado tutorial mediante su Id
+      produces:
+      - application/json
+      parameters:
+      - name: tutorialId
+        in: path
+        description: Informacion del tutorial asociado a la Id
+        required: true
+        type: string
+      responses:
+        200:
+          description: Successful Operation
+          schema:
+            $ref: '#/definitions/Tutorial'
+        400:
+          description: Bad Request
+    delete:
+      tags:
+      - tutoriales
+      summary: Elimina un tutorial
+      description: Elimina un tutorial determinado
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: tutorialId
+        in: path
+        description: Id del tutorial a eliminar
+        required: true
+        type: string
+      responses:
+        200:
+          description: Successful Operation
+        204:
+          description: No Content
+        404:
+          description: Not Found
+  
+definitions:
+  Tutorial:
+    type: object
+    required:
+    - tutorialId
+    - tittle
+    - author
+    - year
+    properties:
+      id:
+        type: string
+        example: 't0'
+      tittle:
+        type: string
+        example: 'Macarrones con queso'
+      author:
+        type: string
+        example: 'JuanMartinez'
+      year:
+        type: string
+        example: '2015'
+        
+  Recipe:
+    type: object
+    required:
+    - recipeId
+    - name
+    - description
+    - tutorials
+    properties:
+      id:
+        type: string
+        example: 't0'
+      name:
+        type: string
+        example: 'Receta de Macarrones con queso'
+      description:
+        type: string
+        example: 'estupenda receta de macarrones'
+      tutorials:
+        type: array
+        items: 
+          $ref: '#/definitions/Tutorial'
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /martadiaz01/yourFoodie-api/1.0.0
+schemes:
+ - https

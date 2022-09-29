@@ -1,0 +1,54 @@
+@charset "ISO-8859-1";
+
+body{
+	background-color: #fcd181;
+	display: flex;
+  	justify-content: center;
+	align-content: center;
+}
+
+html{
+	height: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.content{
+	margin-top:1em;
+	width: 900px;
+}
+.bottom_but{
+	margin-top:1em;
+}
+.panel{
+	background: #86b893;
+	display: block;
+	border: 1px solid;
+	margin: 15px auto;
+	padding: 10px;
+	width: 900px;
+	border-radius: 6px;
+}
+#anyadir{
+	float:left;
+	margin-right:0.3em;
+}
+.inicio{
+	float:left;
+	margin-right:0.3em;
+}
+.bg-primary{
+	margin-top:1em;
+	text-align:center;
+}
+button{
+	padding:0.3em;
+}
+
+.panel-heading{
+	font-size: 18px;
+}
+
+.form-control{
+	width: 800px;
+}

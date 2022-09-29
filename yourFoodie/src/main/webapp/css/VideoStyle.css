@@ -1,0 +1,33 @@
+@charset "ISO-8859-1";
+
+body{
+	background-color: #fcd181;
+}
+
+.tutorialframe {
+	background: #86b893;
+	display: block;
+	border: 1px solid;
+	margin: 15px auto;
+	padding: 40px;
+	width: 1150px;
+	height: 525px;
+	border-radius: 6px;	
+}
+
+iframe, .receta{
+	display: inline-block;
+	vertical-align: top;
+}
+
+.receta {
+	margin-left: 40px;
+	width: 275px;
+}
+
+#botones {
+	margin: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

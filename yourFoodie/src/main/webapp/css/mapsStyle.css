@@ -1,0 +1,35 @@
+html {
+	background: url(../images/fondo1.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100%;
+}
+
+#map {
+	height: 100%;
+	border: 2px solid black;
+	margin-bottom: 5px;
+}
+
+body {
+	height: 90%;
+	background-color: transparent;
+	margin: 2em;
+}
+
+#returnRecetas {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	float: left;
+}
+
+#inicio {
+	margin-left: 0.3em;
+}
+
+#botones {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
